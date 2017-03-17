@@ -1,0 +1,26 @@
+{
+  "name": "results-manager",
+  "version": "0.0.1",
+  "description": "Results Manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdbarr/results-manager.git"
+  },
+  "author": "Mark Barr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdbarr/results-manager/issues"
+  },
+  "homepage": "https://github.com/mdbarr/results-manager#readme",
+  "dependencies": {
+    "grunt": "^0.4.5",
+    "grunt-forever": "^0.4.7",
+    "gruntify-eslint": "^3.1.0",
+    "mongodb": "^2.2.24",
+    "restify": "^4.3.0"
+  }
+}
