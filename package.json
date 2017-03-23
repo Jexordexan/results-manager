@@ -1,6 +1,6 @@
 {
   "name": "results-manager",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Results Manager",
   "main": "index.js",
   "scripts": {
