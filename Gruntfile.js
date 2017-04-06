@@ -9,21 +9,21 @@ module.exports = function(grunt) {
         quiet: true
       },
       src: [
-        '**/*.js'
+        'lib/**/*.js'
       ],
       fix: {
         options: {
           fix: true
         },
         src: [
-          '**/*.js'
+          'lib/**/*.js'
         ]
       }
     },
     forever: {
       server: {
         options: {
-          index: './index.js',
+          index: './server.js',
           logDir: 'logs',
           logFile: 'access_log',
           errFile: 'error_log',

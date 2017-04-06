@@ -1,10 +1,12 @@
 {
   "name": "results-manager",
-  "version": "0.0.15",
-  "description": "Results Manager",
-  "main": "index.js",
+  "description": "Onshape Results Manager",
+  "version": "0.1.0",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run dev-build && node ./server.js",
+    "dev-build": "cross-env NODE_ENV=development webpack --progress --hide-modules",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
   },
   "repository": {
     "type": "git",
@@ -17,10 +19,28 @@
   },
   "homepage": "https://github.com/mdbarr/results-manager#readme",
   "dependencies": {
-    "grunt": "^0.4.5",
+    "grunt": "^1.0.1",
     "grunt-forever": "^0.4.7",
     "gruntify-eslint": "^3.1.0",
-    "mongodb": "^2.2.24",
-    "restify": "^4.3.0"
+    "mongodb": "^2.2.25",
+    "restify": "^4.3.0",
+    "vue": "^2.2.1",
+    "vue-clipboard2": "0.0.5",
+    "vue-router": "^2.3.1",
+    "vuetify": "^0.10.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-latest": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-loader": "^11.1.4",
+    "vue-template-compiler": "^2.2.1",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "^2.2.0"
   }
 }

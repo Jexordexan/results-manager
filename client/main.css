@@ -1,0 +1,71 @@
+body {
+  font-family: Roboto;
+}
+.item {
+  cursor: pointer;
+}
+.bold {
+  font-weight: bold;
+}
+ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: none;
+}
+
+.attachment-image {
+  border: 1px solid black;
+}
+
+.snippet {
+  font-family: Oxygen Mono;
+  display: inline-block;
+  white-space: pre-wrap;
+  font-size: 100%;
+  width: auto;
+  padding: 4px;
+  border: 1px solid #D6D5D3;
+  border-radius: 5px;
+  background: #FBFAF8;
+}
+.hljs {
+  background: #FBFAF8 !important;
+}
+
+.icon--tiny {
+  position: relative;
+  bottom: -2px;
+  font-size: 1rem;
+  min-width: 1rem;
+  width: 1rem;
+  height: 1rem;
+  line-height: 1rem;
+}
+
+.icon--button {
+  position: relative;
+  bottom: -4px;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.no-underline {
+  text-decoration: none !important;
+}
+
+.no-action {
+  cursor: default !important;
+}
+
+.logo-link {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.build-item-link {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.build-item-link:hover {
+  text-decoration: underline !important;
+}
