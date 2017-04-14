@@ -31,18 +31,6 @@ export default {
     };
   },
   filters: {
-    jobName: function(value) {
-      if (value.includes('api-test')) {
-        return value;
-      } else if (value.includes('-site')) {
-        return value.replace('-site', '-site/');
-      } else {
-        return value.replace(/(.*?)-/, '$1/');
-      }
-    },
-    buildNumber: function(value) {
-      return '#' + value.replace(/\d+-/, '');
-    }
   },
   methods: {
     getData: function() {

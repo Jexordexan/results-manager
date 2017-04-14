@@ -58,6 +58,21 @@ Vue.filter('numberFormat', function(value) {
   return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 });
 
+Vue.filter('jobName', function(value) {
+  if (value.includes('api-test') || value.startsWith('qa-')) {
+    return value;
+  } else if (value.includes('-site-')) {
+    return value.replace('-site-', '-site/');
+  } else {
+    return value.replace(/(.*?)-/, '$1/');
+  }
+});
+
+Vue.filter('buildNumber', function(value) {
+  return '#' + value.replace(/\d+-/, '');
+});
+
+
 // Highlight.js directive
 Vue.directive('highlightjs', {
   deep: true,
