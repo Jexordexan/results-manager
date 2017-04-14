@@ -17,7 +17,7 @@
         </div>
       </v-card-row>
 
-      <v-card-row height="50px">
+      <v-card-row>
         <v-icon class="mr-5 grey--text">event</v-icon>
         <div>
           <div>Timestamp</div>
@@ -25,7 +25,7 @@
         </div>
       </v-card-row>
 
-      <v-card-row height="50px">
+      <v-card-row>
         <img src="/static/git.svg" width="24" height="24" class="icon mr-5">
         <div>
           <div>Branch <span class="grey--text">/</span> Hash</div>
@@ -35,7 +35,7 @@
         </div>
       </v-card-row>
 
-      <v-card-row height="50px">
+      <v-card-row>
         <v-icon v-if="build.culprits.length === 1" class="mr-5 grey--text">person_outline</v-icon>
         <v-icon v-else class="mr-5 grey--text">people_outline</v-icon>
         <div>
@@ -47,7 +47,7 @@
         </div>
       </v-card-row>
 
-      <v-card-row height="50px">
+      <v-card-row>
         <v-icon class="mr-5 grey--text">folder</v-icon>
         <div>
           <div>Jenkins Build</div>
