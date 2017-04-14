@@ -36,10 +36,10 @@ export default {
   },
   filters: {
     pathFilter: function(value) {
-      if (value.includes('api-test')) {
+      if (value.includes('api-test') || value.startsWith('qa-')) {
         return value;
-      } else if(value.includes('-site')) {
-        return value.replace('-site', '-site/');
+      } else if(value.includes('-site-')) {
+        return value.replace('-site-', '-site/');
       } else if (/^[\d-]+$/.test(value)) {
         return '#' + value.replace(/.*-/, '');
       } else if (value.includes('-')) {
