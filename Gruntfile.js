@@ -9,14 +9,18 @@ module.exports = function(grunt) {
         quiet: true
       },
       src: [
-        'lib/**/*.js'
+        'lib/**/*.js',
+        'client/**/*.js',
+        'client/**/*.vue'
       ],
       fix: {
         options: {
           fix: true
         },
         src: [
-          'lib/**/*.js'
+          'lib/**/*.js',
+          'client/**/*.js',
+          'client/**/*.vue'
         ]
       }
     },

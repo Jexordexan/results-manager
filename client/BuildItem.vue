@@ -26,38 +26,38 @@ export default {
     item: Object,
     build: Object
   },
-  data: function() {
-    return {};
+  data: function () {
+    return {}
   },
   computed: {
-    stateColor: function() {
-       if (this.item.state === 'passed') {
-         return 'green--text bold';
-       } else if (this.item.state === 'failed') {
-         return 'red--text bold';
-       } else {
-         return 'cyan--text bold'
-       }
+    stateColor: function () {
+      if (this.item.state === 'passed') {
+        return 'green--text bold'
+      } else if (this.item.state === 'failed') {
+        return 'red--text bold'
+      } else {
+        return 'cyan--text bold'
+      }
     }
   },
   filters: {
-     iconType: function(value) {
-       if(value === 'protractor') {
-         return 'computer';
-       } else if (value === 'mocha') {
-         return 'code';
-       } else {
-         return value;
-       }
+    iconType: function (value) {
+      if (value === 'protractor') {
+        return 'computer'
+      } else if (value === 'mocha') {
+        return 'code'
+      } else {
+        return value
+      }
     },
-    iconState: function(value) {
-       if(value === 'passed') {
-         return 'done';
-       } else if (value === 'failed') {
-         return 'clear';
-       } else {
-         return 'remove';
-       }
+    iconState: function (value) {
+      if (value === 'passed') {
+        return 'done'
+      } else if (value === 'failed') {
+        return 'clear'
+      } else {
+        return 'remove'
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "name": "results-manager",
   "description": "Onshape Results Manager",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "main": "server.js",
   "scripts": {
     "dev": "npm run dev-build && node ./server.js",
@@ -21,7 +21,6 @@
   "dependencies": {
     "grunt": "^1.0.1",
     "grunt-forever": "^0.4.7",
-    "gruntify-eslint": "^3.1.0",
     "mongodb": "^2.2.25",
     "restify": "^4.3.0",
     "vue": "^2.2.1",
@@ -35,7 +34,11 @@
     "babel-preset-latest": "^6.0.0",
     "cross-env": "^3.0.0",
     "css-loader": "^0.25.0",
+    "eslint": "^3.19.0",
+    "eslint-config-vue": "^2.0.2",
+    "eslint-plugin-vue": "^2.0.1",
     "file-loader": "^0.9.0",
+    "gruntify-eslint": "^3.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "vue-loader": "^11.1.4",

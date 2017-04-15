@@ -16,36 +16,38 @@ export default {
   props: {
     title: String
   },
-  data: function() {
-    const paths = window.location.pathname.replace(/.*?\/job\//, '').split('/');
-    return { paths };
+  data: function () {
+    const paths = window.location.pathname.replace(/.*?\/job\//, '').split('/')
+    return {
+      paths
+    }
   },
   computed: {
-    job: function() {
+    job: function () {
       if (this.paths[0]) {
-        return this.paths[0];
+        return this.paths[0]
       }
-      return false;
+      return false
     },
-    build: function() {
+    build: function () {
       if (this.paths[1]) {
-        return this.paths[1];
+        return this.paths[1]
       }
-      return false;
+      return false
     }
   },
   filters: {
-    pathFilter: function(value) {
+    pathFilter: function (value) {
       if (value.includes('api-test') || value.startsWith('qa-')) {
-        return value;
-      } else if(value.includes('-site-')) {
-        return value.replace('-site-', '-site/');
+        return value
+      } else if (value.includes('-site-')) {
+        return value.replace('-site-', '-site/')
       } else if (/^[\d-]+$/.test(value)) {
-        return '#' + value.replace(/.*-/, '');
+        return '#' + value.replace(/.*-/, '')
       } else if (value.includes('-')) {
-        return value.replace(/-/, '/');
+        return value.replace(/-/, '/')
       } else {
-        return value;
+        return value
       }
     }
   }

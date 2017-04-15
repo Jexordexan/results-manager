@@ -15,40 +15,43 @@
 </template>
 
 <script>
-import BuildItem from './BuildItem.vue';
-import BuildCard from './BuildCard.vue';
-import ResultHeader from './ResultHeader.vue';
+import BuildItem from './BuildItem.vue'
+import BuildCard from './BuildCard.vue'
+import ResultHeader from './ResultHeader.vue'
 
 export default {
   name: 'Build',
-  data: function() {
+  data: function () {
     return {
-      build: { loading: true }
-    };
-  },
-  components: {
-    BuildCard, BuildItem, ResultHeader
-  },
-  filters: {
-  },
-  methods: {
-    getData: function() {
-      var vm = this;
-      var dataUrl = window.location.pathname.replace('/view/', '/data/');
-      return axios.get(dataUrl).
-        then(function(response) {
-          vm.build = Object.assign({}, vm.build, response.data);
-          vm.build.loading = false;
-          return response;
-        });
+      build: {
+        loading: true
+      }
     }
   },
-  created: function() {
-    this.getData();
+  components: {
+    BuildCard,
+    BuildItem,
+    ResultHeader
+  },
+  filters: {},
+  methods: {
+    getData: function () {
+      const vm = this
+      const dataUrl = window.location.pathname.replace('/view/', '/data/')
+      return axios.get(dataUrl)
+        .then(function (response) {
+          vm.build = Object.assign({}, vm.build, response.data)
+          vm.build.loading = false
+          return response
+        })
+    }
+  },
+  created: function () {
+    this.getData()
   },
   watch: {
-    '$route': function(to, from) {
-      this.getData();
+    '$route': function (to, from) {
+      this.getData()
     }
   }
 }

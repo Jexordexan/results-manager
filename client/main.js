@@ -1,84 +1,83 @@
-import Vue from 'vue';
-import App from './App.vue';
+import Vue from 'vue'
+import App from './App.vue'
 
-import Home from './Home.vue';
+import Home from './Home.vue'
 
-import Jobs from './Jobs.vue';
-import Job from './Job.vue';
-import Build from './Build.vue';
-import Type from './Type.vue';
+import Jobs from './Jobs.vue'
+import Job from './Job.vue'
+import Build from './Build.vue'
+import Type from './Type.vue'
 
-import Users from './Users.vue';
-import User from './User.vue';
+import Users from './Users.vue'
+import User from './User.vue'
 
-import Test from './Test.vue';
+import Test from './Test.vue'
 
-import Vuetify from 'vuetify';
-import VueRouter from 'vue-router';
-import VueClipboard from 'vue-clipboard2';
+import Vuetify from 'vuetify'
+import VueRouter from 'vue-router'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.use(Vuetify)
-Vue.use(VueRouter);
-Vue.use(VueClipboard);
+Vue.use(VueRouter)
+Vue.use(VueClipboard)
 
 // Common Filters
-Vue.filter('capitalize', function(value) {
-  return value[0].toUpperCase() + value.substring(1);
-});
+Vue.filter('capitalize', function (value) {
+  return value[0].toUpperCase() + value.substring(1)
+})
 
-Vue.filter('stripTags', function(value) {
-  return value.replace(/#[\w-]+\b/g, '').trim();
-});
+Vue.filter('stripTags', function (value) {
+  return value.replace(/#[\w-]+\b/g, '').trim()
+})
 
-Vue.filter('tags', function(value) {
-  const tags = [ ];
-  value.replace(/(#[\w-]+)\b/g, function(match, p1) {
-    tags.push(p1);
-  });
-  return tags.join(' ').trim();
-});
+Vue.filter('tags', function (value) {
+  const tags = []
+  value.replace(/(#[\w-]+)\b/g, function (match, p1) {
+    tags.push(p1)
+  })
+  return tags.join(' ').trim()
+})
 
-Vue.filter('calendar', function(value) {
-  return moment(value).calendar();
-});
+Vue.filter('calendar', function (value) {
+  return moment(value).calendar()
+})
 
-Vue.filter('pluralize', function(string, count, pluralForm) {
+Vue.filter('pluralize', function (string, count, pluralForm) {
   if (count > 1) {
     if (pluralForm) {
-      return pluralForm;
+      return pluralForm
     } else {
-      return string + 's';
+      return string + 's'
     }
   } else {
-    return string;
+    return string
   }
-});
+})
 
-Vue.filter('numberFormat', function(value) {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-});
+Vue.filter('numberFormat', function (value) {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+})
 
-Vue.filter('jobName', function(value) {
+Vue.filter('jobName', function (value) {
   if (value.includes('api-test') || value.startsWith('qa-')) {
-    return value;
+    return value
   } else if (value.includes('-site-')) {
-    return value.replace('-site-', '-site/');
+    return value.replace('-site-', '-site/')
   } else {
-    return value.replace(/(.*?)-/, '$1/');
+    return value.replace(/(.*?)-/, '$1/')
   }
-});
+})
 
-Vue.filter('buildNumber', function(value) {
-  return '#' + value.replace(/\d+-/, '');
-});
-
+Vue.filter('buildNumber', function (value) {
+  return '#' + value.replace(/\d+-/, '')
+})
 
 // Highlight.js directive
 Vue.directive('highlightjs', {
   deep: true,
-  bind: function(el, binding) {
+  bind: function (el, binding) {
     // on first bind, highlight all targets
-    let targets = el.querySelectorAll('.code-highlight')
+    const targets = el.querySelectorAll('.code-highlight')
     targets.forEach((target) => {
       // if a value is directly assigned to the directive, use this
       // instead of the element content.
@@ -88,9 +87,9 @@ Vue.directive('highlightjs', {
       hljs.highlightBlock(target)
     })
   },
-  componentUpdated: function(el, binding) {
+  componentUpdated: function (el, binding) {
     // after an update, re-fill the content and then highlight
-    let targets = el.querySelectorAll('.code-highlight')
+    const targets = el.querySelectorAll('.code-highlight')
     targets.forEach((target) => {
       if (binding.value) {
         target.textContent = binding.value
@@ -98,7 +97,7 @@ Vue.directive('highlightjs', {
       }
     })
   }
-});
+})
 
 // Routes
 const routes = [
@@ -143,17 +142,22 @@ const routes = [
     path: '*',
     component: Home
   }
-];
+]
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
-});
+  mode: 'history',
+  scrollBehavior (to, from, savedPosition) {
+    return !savedPosition ? { x: 0, y: 0 } : savedPosition
+  }
+})
 
 // Core instance
 new Vue({
   el: '#app',
   template: '<App/>',
-  components: { App },
+  components: {
+    App
+  },
   router
-}).$mount('#app');
+}).$mount('#app')

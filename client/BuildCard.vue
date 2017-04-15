@@ -65,34 +65,34 @@ export default {
   props: {
     build: Object
   },
-  data: function() {
-    return { };
+  data: function () {
+    return { }
   },
   computed: {
-    headerColor: function() {
+    headerColor: function () {
       if (this.build.fail.length === 0) {
-        return 'green darken-1';
+        return 'green darken-1'
       } else {
-        return 'red';
+        return 'red'
       }
     }
   },
   filters: {
-    pathFilter: function(value) {
+    pathFilter: function (value) {
       if (value.includes('api-test') || value.startsWith('qa-')) {
-        return value;
-      } else if(value.includes('-site-')) {
-        return value.replace('-site-', '-site/');
+        return value
+      } else if (value.includes('-site-')) {
+        return value.replace('-site-', '-site/')
       } else if (/^[\d-]+$/.test(value)) {
-        return '#' + value.replace(/.*-/, '');
+        return '#' + value.replace(/.*-/, '')
       } else if (value.includes('-')) {
-        return value.replace(/-/, '/');
+        return value.replace(/-/, '/')
       } else {
-        return value;
+        return value
       }
     },
-    short: function(value) {
-      return value.substring(0, 12);
+    short: function (value) {
+      return value.substring(0, 12)
     }
   }
 }

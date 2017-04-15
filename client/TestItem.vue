@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import ResultHeader from './ResultHeader.vue';
+import ResultHeader from './ResultHeader.vue'
 
 export default {
   name: 'TestItem',
@@ -94,7 +94,7 @@ export default {
   },
   data: function () {
     return {
-      open: (this.model.name || this.model.state === 'failed') ? true : false,
+      open: !!((this.model.name || this.model.state === 'failed')),
       copyTooltip: 'Copy to clipboard'
     }
   },
@@ -104,72 +104,72 @@ export default {
   computed: {
     isFolder: function () {
       if (this.model.children && this.model.children.length) {
-        return true;
+        return true
       }
       if (this.model.attachments && this.model.attachments.length) {
-        return true;
+        return true
       }
       if (this.model.code || this.model.stack) {
-        return true;
+        return true
       }
-      return false;
+      return false
     },
     isRoot: function () {
-      return this.model.name;
+      return this.model.name
     },
-    passed: function() {
-      return this.model.state === 'passed';
+    passed: function () {
+      return this.model.state === 'passed'
     },
-    failed: function() {
-      return this.model.state === 'failed';
+    failed: function () {
+      return this.model.state === 'failed'
     },
-    skipped: function() {
-      return this.model.state === 'skipped';
+    skipped: function () {
+      return this.model.state === 'skipped'
     },
-    duration: function() {
+    duration: function () {
       if (this.model.duration) {
         if (this.model.duration > 60000) {
-          return '(' + (this.model.duration / 60000).toFixed(1) + ' m)';
+          return '(' + (this.model.duration / 60000).toFixed(1) + ' m)'
         } else if (this.model.duration > 1000) {
-          return '(' + (this.model.duration / 1000).toFixed(1) + ' s)';
+          return '(' + (this.model.duration / 1000).toFixed(1) + ' s)'
         } else {
-          return '(' + this.model.duration + ' ms)';
+          return '(' + this.model.duration + ' ms)'
         }
       } else {
-        return '';
+        return ''
       }
     },
-    color: function() {
+    color: function () {
       if (this.model.state === 'passed') {
-        return 'green';
+        return 'green'
       } else if (this.model.state === 'failed') {
-        return 'red';
+        return 'red'
       } else {
-        return 'blue';
+        return 'blue'
       }
     },
-    command: function() {
+    command: function () {
       if (this.model.type === 'protractor') {
-        return 'ptor ' + this.model.name;
+        return 'ptor ' + this.model.name
       } else if (this.model.type === 'mocha') {
-        return 'mocha ' + this.model.name;
+        return 'mocha ' + this.model.name
       } else {
-       return '';
+        return ''
       }
     },
-    type: function() {
-     if (this.model.buildType === 'main') {
-       return 'jenkins';
-     } else {
-       return this.model.buildType;
-     }
-   },
-   jobUrl: function() {
-     return '/view/job/' + this.model.job;
-   }
+    type: function () {
+      if (this.model.buildType === 'main') {
+        return 'jenkins'
+      } else {
+        return this.model.buildType
+      }
+    },
+    jobUrl: function () {
+      return '/view/job/' + this.model.job
+    }
   },
   methods: {
-    onCopy: function() {
+    onCopy: function () {
       this.copyTooltip = 'Copied!'
     },
     toggle: function () {
@@ -179,11 +179,11 @@ export default {
     }
   },
   filters: {
-    short: function(value) {
-      return value.substring(0, 12);
+    short: function (value) {
+      return value.substring(0, 12)
     },
-    trim: function(value) {
-      return value.trim();
+    trim: function (value) {
+      return value.trim()
     }
   }
 }

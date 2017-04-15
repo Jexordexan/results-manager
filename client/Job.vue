@@ -24,42 +24,45 @@
 </template>
 
 <script>
-import ResultHeader from './ResultHeader.vue';
+import ResultHeader from './ResultHeader.vue'
 
 export default {
   name: 'Job',
   components: {
     ResultHeader
   },
-  data: function() {
+  data: function () {
     return {
-      job: { name: '', loading: true }
-    };
+      job: {
+        name: '',
+        loading: true
+      }
+    }
   },
   filters: {
-    moment: function(value) {
-      return moment(value).calendar();
+    moment: function (value) {
+      return moment(value).calendar()
     }
   },
   methods: {
-    getData: function() {
-      var vm = this;
-      var dataUrl = window.location.pathname.replace('/view/', '/data/');
-      return axios.get(dataUrl).
-        then(function(response) {
-          vm.job.items = response.data.items;
-          vm.job.name = response.data.job;
-          vm.job.loading = false;
-          return response;
-        });
+    getData: function () {
+      const vm = this
+      const dataUrl = window.location.pathname.replace('/view/', '/data/')
+      return axios.get(dataUrl)
+        .then(function (response) {
+          vm.job.items = response.data.items
+          vm.job.name = response.data.job
+          vm.job.loading = false
+          return response
+        })
     }
   },
-  created: function() {
-    this.getData();
+  created: function () {
+    this.getData()
   },
   watch: {
-    '$route': function(to, from) {
-      this.getData();
+    '$route': function (to, from) {
+      this.getData()
     }
   }
 }

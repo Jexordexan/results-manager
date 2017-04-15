@@ -25,31 +25,32 @@
 <script>
 export default {
   name: 'Users',
-  data: function() {
+  data: function () {
     return {
-      users: { loading: true }
-    };
-  },
-  filters: {
-  },
-  methods: {
-    getData: function() {
-      var vm = this;
-      var dataUrl = window.location.pathname.replace('/view/', '/data/');
-      return axios.get(dataUrl).
-        then(function(response) {
-          vm.users.items = response.data.items;
-          vm.users.loading = false;
-          return response;
-        });
+      users: {
+        loading: true
+      }
     }
   },
-  created: function() {
-    this.getData();
+  filters: {},
+  methods: {
+    getData: function () {
+      const vm = this
+      const dataUrl = window.location.pathname.replace('/view/', '/data/')
+      return axios.get(dataUrl)
+        .then(function (response) {
+          vm.users.items = response.data.items
+          vm.users.loading = false
+          return response
+        })
+    }
+  },
+  created: function () {
+    this.getData()
   },
   watch: {
-    '$route': function(to, from) {
-      this.getData();
+    '$route': function (to, from) {
+      this.getData()
     }
   }
 }

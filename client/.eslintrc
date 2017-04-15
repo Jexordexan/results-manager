@@ -1,0 +1,10 @@
+{
+  extends: ['vue'],
+  globals: {
+    axios: true,
+    hljs: true,
+    moment: true
+  },
+  plugins: ['vue'],
+  rules: {}
+}
