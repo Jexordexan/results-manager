@@ -1,6 +1,7 @@
 <template>
-  <v-row v-if="!job.loading">
-    <v-col xs12="xs12" class="pl-3">
+  <v-row>
+    <v-progress-linear v-if="job.loading" success indeterminate height="4" class="top-loader"></v-progress-linear>
+    <v-col xs12="xs12" class="pl-3" v-if="!job.loading">
       <ResultHeader></ResultHeader>
       <v-list>
         <v-list-item v-for="item in job.items" v-bind:key="item.job">
@@ -14,7 +15,7 @@
                 <router-link :to="{ path: '/view/job/' + job.name }">{{ job.name | jobName }}</router-link> &raquo;
                 <router-link :to="{ path: '/view/job/' + job.name + '/' + item.build}">{{ item.build | buildNumber }}</router-link>
               </v-list-tile-title>
-              <v-list-tile-sub-title>{{ item.timestamp | moment }}</v-list-tile-sub-title>
+              <v-list-tile-sub-title>{{ item.timestamp | calendar }}</v-list-tile-sub-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list-item>
@@ -39,21 +40,17 @@ export default {
       }
     }
   },
-  filters: {
-    moment: function (value) {
-      return moment(value).calendar()
-    }
-  },
+  filters: {},
   methods: {
     getData: function () {
       const vm = this
       const dataUrl = window.location.pathname.replace('/view/', '/data/')
-      return axios.get(dataUrl)
+      return this.$http.get(dataUrl)
         .then(function (response) {
-          vm.job.items = response.data.items
-          vm.job.name = response.data.job
+          vm.job.items = response.body.items
+          vm.job.name = response.body.job
           vm.job.loading = false
-          return response
+          return response.body
         })
     }
   },

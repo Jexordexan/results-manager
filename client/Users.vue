@@ -1,6 +1,7 @@
 <template>
-  <v-row v-if="!users.loading">
-    <v-col xs12="xs12" class="pl-3">
+  <v-row>
+    <v-progress-linear v-if="user.loading" success indeterminate height="4" class="top-loader"></v-progress-linear>
+    <v-col xs12="xs12" class="pl-3" v-if="!user.loading">
       <h5 class="grey--text pl-3">Users</h5>
       <v-divider></v-divider>
       <v-list>
@@ -37,11 +38,11 @@ export default {
     getData: function () {
       const vm = this
       const dataUrl = window.location.pathname.replace('/view/', '/data/')
-      return axios.get(dataUrl)
+      return this.$http.get(dataUrl)
         .then(function (response) {
-          vm.users.items = response.data.items
+          vm.users.items = response.body.items
           vm.users.loading = false
-          return response
+          return response.body
         })
     }
   },

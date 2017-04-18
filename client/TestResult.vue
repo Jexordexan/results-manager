@@ -1,5 +1,12 @@
 <template>
- <v-row v-if="!report.loading"><v-col xs12="xs12"><ul><TestItem :model="report"></TestItem></ul></v-col></v-row>
+ <v-row>
+   <v-progress-linear v-if="report.loading" success indeterminate height="4" class="top-loader"></v-progress-linear>
+   <v-col xs12="xs12">
+     <ul>
+       <TestItem v-if="!report.loading" :model="report"></TestItem>
+     </ul>
+   </v-col>
+ </v-row>
 </template>
 
 <script>
@@ -21,11 +28,11 @@ export default {
     getData: function () {
       const vm = this
       const dataUrl = window.location.pathname.replace('/view/', '/data/')
-      return axios.get(dataUrl)
+      return this.$http.get(dataUrl)
         .then(function (response) {
-          vm.report = response.data
-          vm.title = response.data.title
-          return response
+          vm.report = response.body
+          vm.title = response.body.title
+          return response.body
         })
     }
   },

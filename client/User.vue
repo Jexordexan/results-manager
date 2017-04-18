@@ -1,6 +1,7 @@
 <template>
-  <v-row v-if="!user.loading">
-    <v-col xs6="xs6" class="pl-3">
+  <v-row>
+    <v-progress-linear v-if="user.loading" success indeterminate height="4" class="top-loader"></v-progress-linear>
+    <v-col xs6="xs6" class="pl-3" v-if="!user.loading">
       <h5 class="grey--text">
         <router-link to="/view/user/" class="no-underline">Users</router-link> &raquo; {{ user.user }}
       </h5>
@@ -21,7 +22,7 @@
         </v-list-item>
       </v-list>
     </v-col>
-    <v-col xs3="xs3" class="pl-3">
+    <v-col xs3="xs3" class="pl-3" v-if="!user.loading">
       <v-card>
         <v-card-row class="blue">
           <v-card-title>
@@ -80,11 +81,11 @@ export default {
     getData: function () {
       const vm = this
       const dataUrl = window.location.pathname.replace('/view/', '/data/')
-      return axios.get(dataUrl)
+      return this.$http.get(dataUrl)
         .then(function (response) {
-          vm.user = Object.assign({}, vm.user, response.data)
+          vm.user = Object.assign({}, vm.user, response.body)
           vm.user.loading = false
-          return response
+          return response.body
         })
     }
   },

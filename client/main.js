@@ -15,10 +15,14 @@ import Test from './Test.vue'
 
 import Vuetify from 'vuetify'
 import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
 import VueClipboard from 'vue-clipboard2'
+
+import moment from 'moment'
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
+Vue.use(VueResource)
 Vue.use(VueClipboard)
 
 // Common Filters
@@ -140,7 +144,7 @@ const routes = [
   // Fallback
   {
     path: '*',
-    component: Home
+    redirect: '/'
   }
 ]
 
@@ -148,7 +152,10 @@ const router = new VueRouter({
   routes,
   mode: 'history',
   scrollBehavior (to, from, savedPosition) {
-    return !savedPosition ? { x: 0, y: 0 } : savedPosition
+    return !savedPosition ? {
+      x: 0,
+      y: 0
+    } : savedPosition
   }
 })
 

@@ -1,9 +1,7 @@
 {
   extends: ['vue'],
   globals: {
-    axios: true,
-    hljs: true,
-    moment: true
+    hljs: true
   },
   plugins: ['vue'],
   rules: {}

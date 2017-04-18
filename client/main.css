@@ -69,3 +69,8 @@ ul {
 .build-item-link:hover {
   text-decoration: underline !important;
 }
+
+.top-loader {
+  position: absolute !important;
+  top: 50px !important;
+}

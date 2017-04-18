@@ -38,11 +38,11 @@ export default {
     getData: function () {
       const vm = this
       const dataUrl = window.location.pathname.replace('/view/', '/data/')
-      return axios.get(dataUrl)
+      return this.$http.get(dataUrl)
         .then(function (response) {
-          vm.build = Object.assign({}, vm.build, response.data)
+          vm.build = Object.assign({}, vm.build, response.body)
           vm.build.loading = false
-          return response
+          return response.body
         })
     }
   },
