@@ -1,7 +1,7 @@
 <template>
   <v-row>
-    <v-progress-linear v-if="user.loading" success indeterminate height="4" class="top-loader"></v-progress-linear>
-    <v-col xs12="xs12" class="pl-3" v-if="!user.loading">
+    <v-progress-linear v-if="users.loading" success indeterminate height="4" class="top-loader"></v-progress-linear>
+    <v-col xs12="xs12" class="pl-3" v-if="!users.loading">
       <h5 class="grey--text pl-3">Users</h5>
       <v-divider></v-divider>
       <v-list>

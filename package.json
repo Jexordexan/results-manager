@@ -1,7 +1,7 @@
 {
   "name": "results-manager",
   "description": "Onshape Results Manager",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "main": "server.js",
   "scripts": {
     "dev": "npm run dev-build && node ./server.js || exit 0",
