@@ -1,12 +1,13 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './client/main.js',
+  entry:  ['./client/main.js', 'webpack-hot-middleware/client'],
   output: {
-    path: path.resolve(__dirname, './static'),
-    publicPath: '/static/',
-    filename: 'index.js'
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
+    filename: 'app.js'
   },
   module: {
     rules: [
@@ -48,7 +49,19 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'client/index.html',
+      inject: true
+    })
+  ]
 };
 
 if (process.env.NODE_ENV === 'production') {
