@@ -2,12 +2,16 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
+const entryPoint = process.env.NODE_ENV === 'production' 
+  ? './client/main.js'
+  : ['./client/main.js', 'webpack-hot-middleware/client'];
+
 module.exports = {
-  entry:  ['./client/main.js', 'webpack-hot-middleware/client'],
+  entry: entryPoint,
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, './static'),
     publicPath: '/',
-    filename: 'app.js'
+    filename: 'index.js'
   },
   module: {
     rules: [
@@ -44,24 +48,12 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    noInfo: true
+    stats: { colors: true }
   },
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map',
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development')
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'client/index.html',
-      inject: true
-    })
-  ]
+  devtool: '#eval-source-map'
 };
 
 if (process.env.NODE_ENV === 'production') {
@@ -81,6 +73,21 @@ if (process.env.NODE_ENV === 'production') {
     }),
     new webpack.LoaderOptionsPlugin({
       minimize: true
+    })
+  ]);
+} else {
+  module.exports.plugins = (module.exports.plugins || []).concat([
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"development"'
+      }
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: 'client/index.html',
+      inject: true
     })
   ]);
 }
